@@ -106,7 +106,7 @@ export default function Home() {
                 <h2 className="flex items-center gap-2 font-serif text-xl font-semibold text-charcoal">
                   {cat.id === "breakfast" && (
                     <Image
-                      src="https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=100&q=80&auto=format&fit=crop"
+                      src="https://images.unsplash.com/photo-1493770348161-369560ae357d?w=100&q=80&auto=format&fit=crop"
                       alt=""
                       aria-hidden
                       width={24}

@@ -30,7 +30,7 @@ export default function CategoryNav({
             >
               {cat.id === "breakfast" && (
                 <Image
-                  src="https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80"
+                  src="https://images.unsplash.com/photo-1493770348161-369560ae357d?w=600&q=80"
                   alt=""
                   aria-hidden
                   width={20}
