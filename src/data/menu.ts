@@ -49,7 +49,7 @@ export const menuItems: MenuItem[] = [
     description: "Holland pendiri, yağ, sosis, kolbasa, qaymaq, pomidor, xiyar, mürəbbə, zeytun, isti yemək və 1 çaynik çay daxilidir",
     price: 19.9,
     image:
-      "https://news.day.az/media/2026/01/26/800x550/seher_yemeyi.jpg",
+      "https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80",
   },
   {
     id: "b21",

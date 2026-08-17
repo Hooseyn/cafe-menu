@@ -122,7 +122,7 @@ export default function Home() {
               <h2 className="mb-3 flex items-center gap-2 font-serif text-xl font-semibold text-charcoal">
                 {cat.id === "breakfast" && (
                   <Image
-                    src="https://news.day.az/media/2026/01/26/800x550/seher_yemeyi.jpg"
+                    src="https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80"
                     alt=""
                     aria-hidden
                     width={24}
