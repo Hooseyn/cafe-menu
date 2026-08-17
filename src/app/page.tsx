@@ -52,9 +52,12 @@ export default function Home() {
     setActiveCategory(id);
     const el = sectionRefs.current[id];
     if (el) {
+      // Wait for the accordion open/close transition (duration-300) to
+      // finish so the section has reached its final height before we
+      // measure where to scroll — otherwise scrollIntoView lands mid-animation.
       window.setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
+      }, 320);
     }
   };
 

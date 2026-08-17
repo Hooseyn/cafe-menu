@@ -46,7 +46,7 @@ export const menuItems: MenuItem[] = [
     id: "b0",
     category: "breakfast",
     name: "2 Nəfərlik Səhər Yeməyi",
-    description: "Holland pendiri, yağ, sosis, kolbasa, qaymaq, pomidor, xiyar, mürəbbə, zeytun, isti yemək və 1 çaynik çay daxilidir",
+    description: "Günə isti və bol bir süfrə ilə başlayın",
     price: 19.9,
     image:
       "https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80",

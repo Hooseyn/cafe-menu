@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { restaurant } from "@/data/restaurant";
 
@@ -8,9 +8,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const playfair = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-playfair",
+  variable: "--font-heading",
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="az" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="az" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="bg-cream text-charcoal antialiased">{children}</body>
     </html>
   );
