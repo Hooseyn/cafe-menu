@@ -49,7 +49,7 @@ export const menuItems: MenuItem[] = [
     description: "Günə isti və bol bir süfrə ilə başlayın",
     price: 19.9,
     image:
-      "https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80",
+      "https://images.unsplash.com/photo-1493770348161-369560ae357d?w=1200&q=85&auto=format&fit=crop",
   },
   {
     id: "b21",
