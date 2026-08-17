@@ -118,12 +118,12 @@ export default function Home() {
                   {cat.label}
                 </h2>
                 <span
-                  className={`shrink-0 text-charcoal/40 transition-transform duration-300 ease-out ${
-                    isOpen ? "rotate-180" : ""
+                  className={`shrink-0 text-lg text-charcoal/40 transition-transform duration-300 ease-out ${
+                    isOpen ? "rotate-90" : ""
                   }`}
                   aria-hidden
                 >
-                  ⌄
+                  👉
                 </span>
               </button>
               <div
