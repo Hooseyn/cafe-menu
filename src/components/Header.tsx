@@ -10,7 +10,7 @@ export default function Header() {
             {restaurant.logoInitial}
           </div>
           <div>
-            <h1 className="font-serif text-base font-semibold leading-tight tracking-wide text-white sm:text-lg">
+            <h1 className="font-serif text-base font-semibold leading-tight tracking-tight text-white sm:text-lg">
               {restaurant.name}
             </h1>
             <p className="text-[11px] text-white/80 sm:text-xs">{restaurant.tagline}</p>

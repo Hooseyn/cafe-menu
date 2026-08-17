@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { restaurant } from "@/data/restaurant";
 
@@ -8,7 +8,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const fraunces = Fraunces({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-heading",
   weight: ["500", "600", "700"],
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="az" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="az" className={`${inter.variable} ${jakarta.variable}`}>
       <body className="bg-cream text-charcoal antialiased">{children}</body>
     </html>
   );
