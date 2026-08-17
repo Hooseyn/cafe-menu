@@ -178,7 +178,7 @@ export default function Home() {
                           <MenuItemCard item={item} />
                           <div className="rounded-2xl border border-charcoal/10 bg-[#f2f7ef] p-3">
                             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-charcoal/60">
-                              Paketə daxildir
+                              Setə daxildir
                             </p>
                             <div className="flex flex-col gap-2">
                               {[
