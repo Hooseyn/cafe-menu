@@ -7,7 +7,7 @@ export default function CategoryNav({
   activeCategory,
   onSelect,
 }: {
-  activeCategory: Category;
+  activeCategory: Category | null;
   onSelect: (id: Category) => void;
 }) {
   return (

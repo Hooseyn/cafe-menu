@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
@@ -18,13 +18,12 @@ const setBundles = [
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<Category>(
+  const [activeCategory, setActiveCategory] = useState<Category | null>(
     categories[0].id
   );
   const sectionRefs = useRef<Partial<Record<Category, HTMLElement | null>>>(
     {}
   );
-  const isClickScrolling = useRef(false);
   const [isHotFoodOpen, setIsHotFoodOpen] = useState(false);
 
   const normalizedQuery = query.trim().toLocaleLowerCase("az");
@@ -49,43 +48,18 @@ export default function Home() {
     (cat) => (filteredByCategory.get(cat.id)?.length ?? 0) > 0
   );
 
-  useEffect(() => {
-    if (normalizedQuery) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isClickScrolling.current) return;
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) {
-          const id = visible[0].target.getAttribute(
-            "data-category"
-          ) as Category;
-          if (id) setActiveCategory(id);
-        }
-      },
-      { rootMargin: "-120px 0px -70% 0px", threshold: 0 }
-    );
-
-    categories.forEach((cat) => {
-      const el = sectionRefs.current[cat.id];
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, [normalizedQuery]);
-
   const handleSelectCategory = (id: Category) => {
     setActiveCategory(id);
     const el = sectionRefs.current[id];
     if (el) {
-      isClickScrolling.current = true;
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
       window.setTimeout(() => {
-        isClickScrolling.current = false;
-      }, 600);
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
     }
+  };
+
+  const handleToggleSection = (id: Category) => {
+    setActiveCategory((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -109,6 +83,7 @@ export default function Home() {
           if (items.length === 0) return null;
           const isSetsSection = cat.id === "sets";
           const isBreakfastSection = cat.id === "breakfast";
+          const isOpen = normalizedQuery ? true : activeCategory === cat.id;
 
           return (
             <section
@@ -117,23 +92,50 @@ export default function Home() {
               ref={(el) => {
                 sectionRefs.current[cat.id] = el;
               }}
-              className="scroll-mt-[104px] pb-8"
+              className="scroll-mt-[104px] border-b border-charcoal/10 last:border-b-0"
             >
-              <h2 className="mb-3 flex items-center gap-2 font-serif text-xl font-semibold text-charcoal">
-                {cat.id === "breakfast" && (
-                  <Image
-                    src="https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80"
-                    alt=""
-                    aria-hidden
-                    width={24}
-                    height={24}
-                    className="h-6 w-6 shrink-0 rounded-full object-cover"
-                  />
-                )}
-                {cat.icon && <span aria-hidden>{cat.icon}</span>}
-                {cat.label}
-              </h2>
-              <div className="flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={() => handleToggleSection(cat.id)}
+                className="flex w-full items-center justify-between gap-2 py-4 text-left"
+                aria-expanded={isOpen}
+              >
+                <h2 className="flex items-center gap-2 font-serif text-xl font-semibold text-charcoal">
+                  {cat.id === "breakfast" && (
+                    <Image
+                      src="https://images.unsplash.com/photo-1743658849022-f8874e7a106d?w=600&q=80"
+                      alt=""
+                      aria-hidden
+                      width={24}
+                      height={24}
+                      className="h-6 w-6 shrink-0 rounded-full object-cover"
+                    />
+                  )}
+                  {cat.icon && <span aria-hidden>{cat.icon}</span>}
+                  {cat.label}
+                </h2>
+                <span
+                  className={`shrink-0 text-charcoal/40 transition-transform duration-300 ease-out ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
+                  aria-hidden
+                >
+                  ⌄
+                </span>
+              </button>
+              <div
+                className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                  isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div
+                    className={`flex flex-col gap-3 pb-6 transition-all duration-300 ease-out ${
+                      isOpen
+                        ? "translate-y-0 opacity-100"
+                        : "-translate-y-1 opacity-0"
+                    }`}
+                  >
                 {isSetsSection ? (
                   setBundles.map((bundle) => {
                     const mainSetItem = items.find((item) => item.id === bundle.id);
@@ -267,6 +269,8 @@ export default function Home() {
                 ) : (
                   items.map((item) => <MenuItemCard key={item.id} item={item} />)
                 )}
+                  </div>
+                </div>
               </div>
             </section>
           );
